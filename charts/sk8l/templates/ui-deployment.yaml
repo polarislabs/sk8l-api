@@ -75,9 +75,9 @@ spec:
             - name: envoy-config
               mountPath: /etc/envoy
               readOnly: true
-            - name: tls-certs
-              mountPath: /etc/sk8l-certs
-              readOnly: true
+            # - name: tls-certs
+            #   mountPath: /etc/sk8l-certs
+            #   readOnly: true
             {{- if .Values.envoy.volumeMounts }}
             {{- toYaml .Values.envoy.volumeMounts | nindent 12 }}
             {{- end }}
@@ -112,9 +112,9 @@ spec:
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
               readOnly: true
-            - name: tls-certs
-              mountPath: /etc/sk8l-certs
-              readOnly: true
+            # - name: tls-certs
+            #   mountPath: /etc/sk8l-certs
+            #   readOnly: true
             {{- if .Values.sk8lUi.volumeMounts }}
             {{- toYaml .Values.sk8lUi.volumeMounts | nindent 12 }}
             {{ end }}

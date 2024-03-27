@@ -71,9 +71,9 @@ spec:
           volumeMounts:
             - name: badger-storage
               mountPath: /tmp/badger
-            - name: tls-certs
-              mountPath: /etc/sk8l-certs
-              readOnly: true
+            # - name: tls-certs
+            #   mountPath: /etc/sk8l-certs
+            #   readOnly: true
             {{- if .Values.sk8lApi.volumeMounts }}
             {{- toYaml .Values.sk8lApi.volumeMounts | nindent 12 }}
             {{- end }}
@@ -81,23 +81,23 @@ spec:
       volumes:
         - name: badger-storage
           emptyDir: {}
-        - name: tls-certs
-          projected:
-            sources:
-            - secret:
-                name: tls-server-cert
-                items:
-                  - key: tls.crt
-                    path: server-cert.pem
-                  - key: tls.key
-                    path: server-key.pem
-            - secret:
-                name: tls-ca-cert
-                items:
-                  - key: tls.crt
-                    path: ca-cert.pem
-                  - key: tls.key
-                    path: ca-key.pem
+        # - name: tls-certs
+        #   projected:
+        #     sources:
+        #     - secret:
+        #         name: tls-server-cert
+        #         items:
+        #           - key: tls.crt
+        #             path: server-cert.pem
+        #           - key: tls.key
+        #             path: server-key.pem
+        #     - secret:
+        #         name: tls-ca-cert
+        #         items:
+        #           - key: tls.crt
+        #             path: ca-cert.pem
+        #           - key: tls.key
+        #             path: ca-key.pem
         {{- if .Values.sk8lApi.volumes }}
         {{- toYaml .Values.sk8lApi.volumes | nindent 8 }}
         {{ end }}
